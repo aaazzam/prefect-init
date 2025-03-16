@@ -87,7 +87,6 @@ class ChangeDirectory:
 @app.command()
 def init(
     name: Annotated[str, typer.Argument()],
-    cloud: Annotated[bool, typer.Option(help="Create a new Prefect Cloud project")] = True,
 ):
     try:
         with modified_environ(UV_VENV_SEED="True"):
@@ -116,8 +115,6 @@ def init(
             with open('pyproject.toml', 'w') as f:
                 print(pyproject)
                 toml.dump(pyproject, f)
-        if cloud:
-            subprocess.run(['uvx', 'prefect', 'cloud', 'login'], check=True)
         console.print(f"[bold green]Success! Created {name} at {pathlib.Path.cwd()}")
 
 if __name__ == "__main__":
