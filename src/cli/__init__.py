@@ -113,7 +113,6 @@ def init(
                 'profiles_path': './.prefect/profiles.toml',
             }
             with open('pyproject.toml', 'w') as f:
-                print(pyproject)
                 toml.dump(pyproject, f)
         console.print(f"[bold green]Success! Created {name} at {pathlib.Path.cwd()}")
 
